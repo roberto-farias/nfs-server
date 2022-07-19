@@ -40,4 +40,5 @@
     dest: /opt/site
     owner: root
     group: root
+    mode: 0775
   tags: nfs
