@@ -1,0 +1,9 @@
+---
+- name: Side Effect
+  hosts: all
+  become: true
+  tasks:
+    - name: Start the services
+      service:
+        name: nfs-kernel-server
+        state: started

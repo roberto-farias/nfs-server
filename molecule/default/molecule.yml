@@ -1,0 +1,23 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: Ubuntu
+    image: docker-nfs-server-ubuntu:latest
+    command: ${MOLECULE_DOCKER_COMMAND:-""}
+    pre_build_image: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    privileged: true
+provisioner:
+  name: ansible
+  playbooks:
+    side_effect: side_effect.yml
+verifier:
+  name: ansible
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .   
